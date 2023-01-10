@@ -1,0 +1,21 @@
+.header-body{
+    
+    background-color: rgb(64, 142, 176);
+    height: 70px;
+    
+    
+}
+
+
+.header-weight{
+    /* color: rgb(197, 129, 129); */
+    font-weight: 500;
+}
+
+
+.header-image{
+    width: 160px;
+    height: 50px;
+    border-radius: 5px;
+   
+}
