@@ -1,10 +1,12 @@
 .about-heading{
+    text-align: center;
     font-family: Georgia, 'Times New Roman', Times, serif;
-    justify-content: center;
-    text-align: justify;
+    /* justify-content: center;
+    text-align: justify; */
 }
 .about-full-heading{
-    margin: 40px;
+    background-color: rgb(176, 210, 199);
+    padding: 40px;
 }
 .about-p{
     text-align: justify;

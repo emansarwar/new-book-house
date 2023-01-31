@@ -1,13 +1,27 @@
-.footer-body{
-    background-color: rgb(147, 158, 154);
+.footer-container{
+    /* background-color: rgba(115, 219, 181, 0.542); */
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+
 }
 
+.footer-titlee{
+    color: blueviolet;
+    
+}
+/* .footer-container{
+    background-color: ;
+} */
 
+.footer-logo{
+    display: flex;
+    justify-content: center;
+}
 
 .footer-css{
-    margin-left: 30px;
+    /* margin-left: 30px;
     margin-right: 30px;
-    padding-bottom: 10px;
+    padding-bottom: 10px; */
     display: flex;
     justify-content: center;
 }

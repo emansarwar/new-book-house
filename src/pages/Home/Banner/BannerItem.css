@@ -1,0 +1,32 @@
+.carousel-img:after {
+    content:'';
+    position:absolute;
+    left:0; 
+    top:0;
+    width:100%; 
+    height:100%;
+    margin-left: 20px;
+    margin-right: 10px;
+    /* padding: 10px; */
+    border-radius: 20px;
+    display:inline-block;
+    background: linear-gradient(to right,  #151515 0%,rgba(21, 21, 21, 0) 100%); 
+    /* W3C */
+  }
+
+  .banneritem-img{
+    margin-left: 20px;
+    /* margin-right: 15px; */
+    height: 500px;
+    width: 1330px;
+  }
+  .banner-direction{
+    position: absolute;
+    top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  }
+  /* .direction-btn{
+    background-color: darkgray;
+
+  } */

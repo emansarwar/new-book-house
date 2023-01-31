@@ -1,94 +1,88 @@
-import React, { useRef } from "react";
-import { Button, Form } from "react-bootstrap";
-import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
-import { useLocation, useNavigate } from "react-router-dom";
-import auth from "../../firebase.init";
-import Loading from "../Shared/Loading/Loading";
-import SocialLogin from "./SocialLogin/SocialLogin";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import React, { useContext } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import img from "../../assets/images/login/login.svg";
+import { AuthContext } from "../../contexts/AuthProvider";
 
 const Login = () => {
-  const emailRef = useRef("");
-  const passRef = useRef("");
-  const navigateLog = useNavigate();
+  const { login } = useContext(AuthContext);
   const location = useLocation();
-  let errorTrue;
+  const navigate = useNavigate();
+
   const from = location.state?.from?.pathname || "/";
 
-  const [signInWithEmailAndPassword, user, error, loading] = useSignInWithEmailAndPassword(auth);
+  const handleLogin = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const email = form.email.value;
+    const password = form.password.value;
 
-  const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth);
+    login(email, password)
+      .then((result) => {
+        const user = result.user;
 
-  if (loading || sending) {
-    return <Loading />;
-  }
-  if (user) {
-    navigateLog(from, { replace: true });
-  }
+        const currentUser = {
+          email: user.email,
+        };
 
-  if (error) {
-    errorTrue = <p className="text-danger">Error: {error?.message}</p>;
-  }
+        console.log(currentUser);
 
-  const controlLogin = (e) => {
-    e.preventDefault();
-    const email = emailRef.current.value;
-    const pass = passRef.current.value;
-    console.log(email, pass);
-
-    signInWithEmailAndPassword(email, pass);
+        // get jwt token
+        fetch("http://localhost:5000/jwt", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(currentUser),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            // local storage is the easiest but not the best place to store jwt token
+            localStorage.setItem("book-worm", data.token);
+            navigate(from, { replace: true });
+          });
+      })
+      .catch((error) => console.log(error));
   };
 
-  const navigateLogin = (e) => {
-    navigateLog("/register");
-  };
-
-  const resetPassword = async () => {
-    const email = emailRef.current.value;
-    if (email) {
-      await sendPasswordResetEmail(email);
-      toast("Sent email");
-    }
-    else{
-      toast('Please enter your email address');
-    }
-  };
   return (
-    <div className="container w-50 mx-auto">
-      <h2 className="text-success mt-2">Please Login</h2>
-      <Form className=" mb-3" onSubmit={controlLogin}>
-        <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Control ref={emailRef} type="email" placeholder="Enter email" required />
-          {/* <Form.Text className="text-muted">We'll never share your email with anyone else.</Form.Text> */}
-        </Form.Group>
-
-        <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Control ref={passRef} type="password" placeholder="Enter Password" required />
-        </Form.Group>
-        {/* <Form.Group className="mb-3" controlId="formBasicCheckbox">
-          <Form.Check type="checkbox" label="Check me out" />
-        </Form.Group> */}
-        <Button className="w-100" variant="success" type="submit">
-          Login
-        </Button>
-      </Form>
-      {errorTrue}
-      <h6>
-        Are you new to this site?
-        <Button className="register-link" onClick={navigateLogin} variant="outline-success">
-          Please Register
-        </Button>
-      </h6>
-
-      <h6>
-        forget password?
-        <Button className="register-link" onClick={resetPassword} variant="outline-success">
-          Reset Password
-        </Button>
-      </h6>
-      <SocialLogin></SocialLogin>
-      <ToastContainer />
+    <div className="hero w-full my-20">
+      <div className="hero-content grid gap-20 md:grid-cols-2 flex-col lg:flex-row">
+        <div className="text-center lg:text-left">
+          <img className="w-3/4" src={img} alt="" />
+        </div>
+        <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100 py-20">
+          <h1 className="text-5xl text-center font-bold">Login</h1>
+          <form onSubmit={handleLogin} className="card-body">
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Email</span>
+              </label>
+              <input type="text" name="email" placeholder="email" className="input input-bordered" />
+            </div>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Password</span>
+              </label>
+              <input type="password" name="password" placeholder="password" className="input input-bordered" />
+              <label className="label">
+                <a href="/" className="label-text-alt link link-hover">
+                  Forgot password?
+                </a>
+              </label>
+            </div>
+            <div className="form-control mt-6">
+              <input className="btn btn-primary" type="submit" value="Login" />
+            </div>
+          </form>
+          <p className="text-center">
+            New to book-worm?{" "}
+            <Link className="text-orange-600 font-bold" to="/signup">
+              Sign Up
+            </Link>{" "}
+          </p>
+        </div>
+      </div>
     </div>
   );
 };

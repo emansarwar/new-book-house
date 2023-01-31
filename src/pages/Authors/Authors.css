@@ -2,25 +2,36 @@
     box-sizing: border-box;
   }
    */
-  
+  .view-all{
+    background-color: rgb(196, 227, 142);
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    text-align: center;
+  }
  
-   .experts-header{
+  .authors-main{
+    background-color: rgb(227, 221, 233);
+    border-radius: 20px;
+    
+  }
+   .authors-header{
     text-align: center;
     background-color: rgba(250, 76, 7, 0.349);
-    padding: 5px;
+    padding: 10px;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
     color: rgba(200, 40, 139, 0.71);
     font-family: 'Times New Roman', Times, serif;
 }
-.experts-container{
+.authors-container{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    margin-left: 10px;
+    /* margin-left: 10px; */
+    
 }
 
 @media screen and (max-width:1100px) {
-  .experts-container{
+  .authors-container{
         
     grid-column: auto;
   grid-template-columns: repeat(2, 1fr);
@@ -28,7 +39,7 @@
 }
 
 @media screen and (max-width:760px) {
-    .experts-container{
+    .authors-container{
       
     grid-template-columns: repeat(1, 1fr);
     }

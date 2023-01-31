@@ -1,57 +1,74 @@
-import React from "react";
-import "./Header.css";
-// import "./Header.scss";
-// import Container from "react-bootstrap/Container";
-// import Nav from "react-bootstrap/Nav";
-// import Navbar from "react-bootstrap/Navbar";
-import { Button, Container, Nav, Navbar } from "react-bootstrap";
-import HeaderImg from "./image-header/header-img2.png";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import { useAuthState } from "react-firebase-hooks/auth";
-import auth from "../../../firebase.init";
-import { signOut } from "firebase/auth";
+import logo from "./image-header/ishaq-robin-caND1D-Kh9Y-unsplash (1).png";
+import { AuthContext } from "../../../contexts/AuthProvider";
+import "./Header.css";
 
 const Header = () => {
-  const [user] = useAuthState(auth);
+  const { user, logOut } = useContext(AuthContext);
 
-  const handleSignOut = () =>{
-    signOut(auth);
-  } 
+  const handleLogOut = () => {
+    logOut().then().catch();
+  };
+
+  const menuItems = (
+    <>
+      <button className="btn glass mx-2 mt-2">
+        <Link to="/">Home</Link>
+      </button>
+      <button className="btn glass mx-2 mt-2">
+        <Link to="/services">Books</Link>
+      </button>
+      <button className="btn glass mx-2 mt-2">
+        <Link to="/authors">Authors</Link>
+      </button>
+      <button className="btn glass mx-2 mt-2">
+        <Link to="/about">About</Link>
+      </button>
+      {/* <button className='font-semibold home-btn'><Link to='/'>Home</Link></button> */}
+      {user?.email ? (
+        <>
+          <button className="btn glass  mx-2 mt-2 ">
+            <Link to="/orders">Orders</Link>
+          </button>
+
+          <button onClick={handleLogOut} className="btn glass mx-2  mt-2 ">
+            Sign Out
+          </button>
+        </>
+      ) : (
+        // <li className='font-semibold'><Link to='/login'>Login</Link></li>
+        <button className="btn glass mx-2  mt-2">
+          <Link to="/login">Login</Link>
+        </button>
+      )}
+    </>
+  );
+
   return (
-    <Navbar className="header-body" sticky="top" collapseOnSelect expand="lg" bg="secondary" variant="white">
-      <Container>
-        <Navbar.Brand as={Link} to="/">
-          <img className="header-image" height={50} src={HeaderImg} alt="" />
-        </Navbar.Brand>
-        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-        <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="me-auto   header-weight">
-            <Nav.Link as={Link} to="home">HOME</Nav.Link>
-            <Nav.Link as={Link} to="books">BOOKS</Nav.Link>
-            <Nav.Link  as={Link} to="writters">WRITTERS</Nav.Link>
-            {/* <NavDropdown title="Others" id="collasible-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
-            </NavDropdown> */}
-          </Nav>
-          <Nav className="header-weight">
-            <Nav.Link as={Link} to="about">
-              ABOUT
-            </Nav.Link>
-            {user ? (
-              <Button onClick={handleSignOut} variant="outline-light">Sign Out</Button>
-            ) : (
-              <Nav.Link as={Link} to="/login">
-                LOGIN
-              </Nav.Link>
-            )}
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
+    <div className="navbar header-bg h-16 pt-2 pb-5 bg-base-100">
+      <div className="navbar-start">
+        <div className="dropdown">
+          <label tabIndex={0} className="btn btn-ghost lg:hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 20 20" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" />
+            </svg>
+          </label>
+          <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
+            {menuItems}
+          </ul>
+        </div>
+        <Link to="/" className="btn btn-ghost normal-case mt-2 text-xl">
+          <img src={logo} alt="" />
+        </Link>
+      </div>
+      <div className="navbar-center hidden lg:flex">
+        <ul className="menu menu-horizontal p-0">{menuItems}</ul>
+      </div>
+      {/* <div className="navbar-end">
+        <button className="btn btn-outline mt-2 btn-warning">Appointment</button>
+      </div> */}
+    </div>
   );
 };
 

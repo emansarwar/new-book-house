@@ -1,8 +1,8 @@
 import React from "react";
 import "./Author.css";
 
-const Author = ({ expert }) => {
-  const { name, biography, image } = expert;
+const Author = ({ author }) => {
+  const { name, biography, image } = author;
   return (
     <div className="expert-container">
       <img className="img-expert" src={image} alt="" />
