@@ -14,13 +14,14 @@ const OrderRow = ({ order, handleDelete, handleStatusUpdate }) => {
     
 
     return (
-        <div className='orderrow-design'>
-            <tr>
-            <th>
+        
+        <tr className=''>
+            
+            <td>
                 <label>
                     <button onClick={() => handleDelete(_id)} className='btn btn-ghost'>X</button>
                 </label>
-            </th>
+            </td>
             <td>
                 <div className="flex items-center space-x-3">
                     <div className="avatar">
@@ -48,7 +49,7 @@ const OrderRow = ({ order, handleDelete, handleStatusUpdate }) => {
                 className="btn btn-ghost btn-xs">{status ? status : 'pending'}</button>
             </th>
         </tr>
-        </div>
+        
         
     );
 };

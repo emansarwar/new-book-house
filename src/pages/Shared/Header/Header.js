@@ -13,32 +13,32 @@ const Header = () => {
 
   const menuItems = (
     <>
-      <button className="btn glass mx-2 mt-2">
+      <button className="btn  btn-outline btn-secondary mx-2 mt-2">
         <Link to="/">Home</Link>
       </button>
-      <button className="btn glass mx-2 mt-2">
+      <button className="btn  btn-outline btn-secondary mx-2 mt-2">
         <Link to="/services">Books</Link>
       </button>
-      <button className="btn glass mx-2 mt-2">
+      <button className="btn  btn-outline btn-secondary mx-2 mt-2">
         <Link to="/authors">Authors</Link>
       </button>
-      <button className="btn glass mx-2 mt-2">
+      <button className="btn  btn-outline btn-secondary mx-2 mt-2">
         <Link to="/about">About</Link>
       </button>
       {/* <button className='font-semibold home-btn'><Link to='/'>Home</Link></button> */}
       {user?.email ? (
         <>
-          <button className="btn glass  mx-2 mt-2 ">
+          <button className="btn  btn-outline btn-secondary  mx-2 mt-2 ">
             <Link to="/orders">Orders</Link>
           </button>
 
-          <button onClick={handleLogOut} className="btn glass mx-2  mt-2 ">
+          <button onClick={handleLogOut} className="btn  btn-outline btn-secondary mx-2  mt-2 ">
             Sign Out
           </button>
         </>
       ) : (
         // <li className='font-semibold'><Link to='/login'>Login</Link></li>
-        <button className="btn glass mx-2  mt-2">
+        <button className="btn  btn-outline btn-secondary mx-2  mt-2">
           <Link to="/login">Login</Link>
         </button>
       )}

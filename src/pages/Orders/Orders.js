@@ -70,21 +70,25 @@ const Orders = () => {
   return (
     <div className="order-container">
       <h2 className="text-5xl">You have {orders.length} Orders</h2>
-      <div className="overflow-x-auto w-full">
-        <table className="table w-full">
-          <thead>
+      <div className="overflow-x-auto w-full my-5 bg-accent ">
+        <table className="table order-table-css">
+          <thead className="order-head ">
             <tr>
-              <th></th>
-              <th>Name</th>
+              <th>Delete Button</th>
+              <th className="text-center">Profile</th>
               <th>Job</th>
               <th>Favorite Color</th>
-              <th></th>
+              <th>Status</th>
             </tr>
           </thead>
           <tbody>
-            {orders.map((order) => (
-              <OrderRow key={order._id} order={order} handleDelete={handleDelete} handleStatusUpdate={handleStatusUpdate}></OrderRow>
-            ))}
+            {
+            orders.map((order) => <OrderRow 
+              key={order._id} 
+              order={order} 
+              handleDelete={handleDelete} 
+              handleStatusUpdate={handleStatusUpdate}></OrderRow>)
+            }
           </tbody>
         </table>
       </div>
