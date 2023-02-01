@@ -14,7 +14,7 @@ const Authors = () => {
     // const [experts] = useAuthors();
     const [authors, setAuthors] = useState([]);
     useEffect( () =>{
-        fetch('http://localhost:5000/authors')
+        fetch('https://book-house-server-blue.vercel.app/authors')
         .then(res =>res.json())
         .then(data => setAuthors(data))
     }, []);

@@ -8,7 +8,7 @@ const Orders = () => {
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/orders?email=${user?.email}`, {
+    fetch(`https://book-house-server-blue.vercel.app/orders?email=${user?.email}`, {
       headers: {
         authorization: `Bearer ${localStorage.getItem("book-worm")}`,
       },
@@ -27,7 +27,7 @@ const Orders = () => {
   const handleDelete = (id) => {
     const proceed = window.confirm("Are you sure, you want to cancel this order");
     if (proceed) {
-      fetch(`http://localhost:5000/orders/${id}`, {
+      fetch(`https://book-house-server-blue.vercel.app/orders/${id}`, {
         method: "DELETE",
         headers: {
           authorization: `Bearer ${localStorage.getItem("book-worm")}`,
@@ -45,7 +45,7 @@ const Orders = () => {
   };
 
   const handleStatusUpdate = (id) => {
-    fetch(`http://localhost:5000/orders/${id}`, {
+    fetch(`https://book-house-server-blue.vercel.app/orders/${id}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",
@@ -82,13 +82,9 @@ const Orders = () => {
             </tr>
           </thead>
           <tbody>
-            {
-            orders.map((order) => <OrderRow 
-              key={order._id} 
-              order={order} 
-              handleDelete={handleDelete} 
-              handleStatusUpdate={handleStatusUpdate}></OrderRow>)
-            }
+            {orders.map((order) => (
+              <OrderRow key={order._id} order={order} handleDelete={handleDelete} handleStatusUpdate={handleStatusUpdate}></OrderRow>
+            ))}
           </tbody>
         </table>
       </div>

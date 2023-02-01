@@ -27,7 +27,7 @@ const Login = () => {
         console.log(currentUser);
 
         // get jwt token
-        fetch("http://localhost:5000/jwt", {
+        fetch("https://book-house-server-blue.vercel.app/jwt", {
           method: "POST",
           headers: {
             "content-type": "application/json",

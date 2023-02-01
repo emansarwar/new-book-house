@@ -33,7 +33,7 @@ const Checkout = () => {
 
     // }
 
-    fetch("http://localhost:5000/orders", {
+    fetch("https://book-house-server-blue.vercel.app/orders", {
       method: "POST",
       headers: {
         "content-type": "application/json",
