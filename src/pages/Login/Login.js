@@ -83,6 +83,7 @@ const Login = () => {
                 Sign Up
               </Link>
             </p>
+            <hr />
             <p>
             <SocialLogin />
             </p>
