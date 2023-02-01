@@ -2,6 +2,8 @@ import React, { useContext } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import img from "../../assets/images/login/login.svg";
 import { AuthContext } from "../../contexts/AuthProvider";
+import SocialLogin from "../Shared/SocialLogin/SocialLogin";
+import './Login.css'
 
 const Login = () => {
   const { login } = useContext(AuthContext);
@@ -75,12 +77,17 @@ const Login = () => {
               <input className="btn btn-primary" type="submit" value="Login" />
             </div>
           </form>
-          <p className="text-center">
-            New to book-worm?{" "}
-            <Link className="text-orange-600 font-bold" to="/signup">
-              Sign Up
-            </Link>{" "}
-          </p>
+          <div className="align-items">
+            <p className="text-center">New to book-worm?
+              <Link className="text-orange-600 font-bold" to="/signup">
+                Sign Up
+              </Link>
+            </p>
+            <p>
+            <SocialLogin />
+            </p>
+            
+          </div>
         </div>
       </div>
     </div>
