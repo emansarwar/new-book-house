@@ -6,7 +6,7 @@ import "./Services.css";
 
 const Services = () => {
   const [services, setServices] = useState([]);
-
+  const services27 = services.slice(0, 27);
   useEffect(() => {
     fetch("https://book-house-server-blue.vercel.app/services")
       .then((res) => res.json())
@@ -21,7 +21,7 @@ const Services = () => {
         {/* <h2 className="text-5xl font-semibold">Our Service Area</h2> */}
       </div>
       <div className="services-grid">
-        {services.map((service) => (
+        {services27.map((service) => (
           <Service key={service._id} service={service}></Service>
         ))}
       </div>
