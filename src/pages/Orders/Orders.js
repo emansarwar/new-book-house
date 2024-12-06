@@ -6,9 +6,9 @@ import "./Orders.css";
 const Orders = () => {
   const { user, logOut } = useContext(AuthContext);
   const [orders, setOrders] = useState([]);
-
+  console.log("Authorization Header:", localStorage.getItem("book-worm"));
   useEffect(() => {
-    fetch(`https://book-house-server-blue.vercel.app/orders?email=${user?.email}`, {
+    fetch(`https://book-house-server.vercel.app/orders?email=${user?.email}`, {
       headers: {
         authorization: `Bearer ${localStorage.getItem("book-worm")}`,
       },
@@ -27,7 +27,7 @@ const Orders = () => {
   const handleDelete = (id) => {
     const proceed = window.confirm("Are you sure, you want to cancel this order");
     if (proceed) {
-      fetch(`https://book-house-server-blue.vercel.app/orders/${id}`, {
+      fetch(`https://book-house-server.vercel.app/orders/${id}`, {
         method: "DELETE",
         headers: {
           authorization: `Bearer ${localStorage.getItem("book-worm")}`,
@@ -45,7 +45,7 @@ const Orders = () => {
   };
 
   const handleStatusUpdate = (id) => {
-    fetch(`https://book-house-server-blue.vercel.app/orders/${id}`, {
+    fetch(`https://book-house-server.vercel.app/orders/${id}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",
@@ -74,10 +74,10 @@ const Orders = () => {
         <table className="table order-table-css">
           <thead className="order-head ">
             <tr>
-              <th>Delete Button</th>
-              <th className="text-center">Profile</th>
-              <th>Job</th>
-              <th>Favorite Color</th>
+              <th>Delete</th>
+              <th className="">Profile</th>
+              <th>Book Name</th>
+              {/* <th>Favorite Color</th> */}
               <th>Status</th>
             </tr>
           </thead>

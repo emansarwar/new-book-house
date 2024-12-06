@@ -25,15 +25,7 @@ const Checkout = () => {
       phone,
       message,
     };
-
-    // if(phone.length > 10){
-    //     alert('Phone number should be 10 characters or longer')
-    // }
-    // else{
-
-    // }
-
-    fetch("https://book-house-server-blue.vercel.app/orders", {
+    fetch("https://book-house-server.vercel.app/orders", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -47,9 +39,11 @@ const Checkout = () => {
         if (data.acknowledged) {
           alert("Order placed successfully");
           form.reset();
+          navigate("/orders");
+          // navigate('/orders')
         }
       })
-      .catch((er) => console.error(er));
+      .catch((error) => console.error(error));
     navigate("/home");
   };
 

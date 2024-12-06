@@ -3,24 +3,24 @@
   }
    */
   .view-all{
-    background-color: rgb(196, 227, 142);
+    /* background-color: rgb(13, 124, 110); */
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     text-align: center;
   }
  
   .authors-main{
-    background-color: rgb(227, 221, 233);
+    /* background-color: rgb(101, 220, 198); */
     border-radius: 20px;
     
   }
    .authors-header{
     text-align: center;
-    background-color: rgba(250, 76, 7, 0.349);
+    /* background-color: rgba(120, 240, 202, 0.937); */
     padding: 10px;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
-    color: rgba(200, 40, 139, 0.71);
+    color: rgba(20, 16, 111, 0.71);
     font-family: 'Times New Roman', Times, serif;
 }
 .authors-container{

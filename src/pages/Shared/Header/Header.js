@@ -8,45 +8,49 @@ const Header = () => {
   const { user, logOut } = useContext(AuthContext);
 
   const handleLogOut = () => {
-    logOut().then().catch();
+    logOut()
+    .then()
+    .catch();
   };
 
   const menuItems = (
-    <>
-      <button className="btn  btn-outline btn-secondary mx-2 mt-2">
-        <Link to="/">Home</Link>
-      </button>
-      <button className="btn  btn-outline btn-secondary mx-2 mt-2">
-        <Link to="/services">Books</Link>
-      </button>
-      <button className="btn  btn-outline btn-secondary mx-2 mt-2">
-        <Link to="/authors">Authors</Link>
-      </button>
-      <button className="btn  btn-outline btn-secondary mx-2 mt-2">
-        <Link to="/about">About</Link>
-      </button>
-      {/* <button className='font-semibold home-btn'><Link to='/'>Home</Link></button> */}
+    <div>
+      
+        <Link to="/"><button className="btn  btn-outline bg-emerald-400 mx-2 mt-2">HOME</button></Link>
+      
+      
+        <Link to="/services"><button className="btn  btn-outline bg-emerald-400 mx-2 mt-2">BOOKS</button></Link>
+      
+      
+        <Link to="/authors"><button className="btn  btn-outline bg-emerald-400 mx-2 mt-2">Authors</button></Link>
+      
+      
+        <Link to="/about"><button className="btn  btn-outline bg-emerald-400 mx-2 mt-2">About</button></Link>
+      
+      
       {user?.email ? (
         <>
-          <button className="btn  btn-outline btn-secondary  mx-2 mt-2 ">
-            <Link to="/orders">Orders</Link>
-          </button>
+          
+            <Link to="/orders"><button className="btn  btn-outline btn-secondary  mx-2 mt-2 ">Orders</button></Link>
 
-          <button onClick={handleLogOut} className="btn  btn-outline btn-secondary mx-2  mt-2 ">
+            <Link onClick={handleLogOut} to="/login"><button className="btn  btn-outline btn-secondary  mx-2 mt-2 ">Sign Out</button></Link>
+          
+
+          {/* <button onClick={handleLogOut} className="btn  btn-outline btn-secondary mx-2  mt-2 ">
             Sign Out
-          </button>
+          </button> */}
         </>
       ) : (
-        // <li className='font-semibold'><Link to='/login'>Login</Link></li>
-        <button className="btn  btn-outline btn-secondary mx-2  mt-2">
-          <Link to="/login">Login</Link>
-        </button>
+        
+        
+          <Link to="/login"><button className="btn  btn-outline bg-emerald-400 mx-2  mt-2">Login</button></Link>
+        
       )}
-    </>
+    </div>
   );
 
   return (
-    <div className="navbar header-bg h-16 pt-2 pb-5 bg-base-100">
+    <div className="navbar bg-emerald-600 h-16 pt-2 pb-5">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -58,11 +62,11 @@ const Header = () => {
             {menuItems}
           </ul>
         </div>
-        <Link to="/" className="btn btn-ghost normal-case mt-2 text-xl">
+        <Link to="/" className="btn bg-emerald-400 normal-case mt-2 text-xl">
           <img src={logo} alt="" />
         </Link>
       </div>
-      <div className="navbar-center hidden lg:flex">
+      <div className="navbar-center hidden sm:flex">
         <ul className="menu menu-horizontal p-0">{menuItems}</ul>
       </div>
       {/* <div className="navbar-end">

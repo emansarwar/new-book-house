@@ -4,7 +4,7 @@ import './Footer.css'
 
 const Footer = () => {
     return (
-        <footer className="footer footer-container p-10 mt-3 bg-accent text-white">
+        <footer className="footer footer-container p-10  bg-cyan-900 text-white">
             <div>
                 <img src={logo} alt="" />
                 <p>book-worm library<br/>Providing reliable services since 1992</p>

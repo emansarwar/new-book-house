@@ -3,18 +3,18 @@
 }
 
 .services-header{
-    background-color: aquamarine;
+    /* background-color: aquamarine; */
     border-radius: 10px;
 
 }
 
 .services-container{
-    background-color: rgb(219, 209, 209);
+    /* background-color: rgb(219, 209, 209); */
     border-radius: 10px;
 }
 
 .view-all-services{
-    background-color: rgb(151, 123, 117);
+    /* background-color: rgb(151, 123, 117); */
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     text-align: center;

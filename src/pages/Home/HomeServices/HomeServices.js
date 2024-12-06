@@ -10,27 +10,26 @@ const HomeServices = () => {
   const homeServices = services.slice(0, 6);
 
   useEffect(() => {
-    fetch("https://book-house-server-blue.vercel.app/services")
+    fetch("https://book-house-server.vercel.app/services")
       .then((res) => res.json())
       .then((data) => setServices(data));
   }, []);
-  console.log(services);
+  // console.log(services);
 
   return (
-    <div className="mb-4 services-container">
+    <div className="mb-4 bg-emerald-600 services-container text-center">
       <div className="text-center services-header mb-4">
-        <p className="text-4xl py-3 font-bold text-orange-600"> Our Books</p>
+        <p className="text-4xl py-3 font-bold bg-emerald-500"> Our Books</p>
       </div>
       <div className="services-grid">
         {homeServices.map((service) => (
           <Service key={service._id} service={service}></Service>
         ))}
       </div>
-      <div className="view-all-services text-3xl py-2 mx-1">
-        <button>
-          <Link to="/services">View all</Link>
-        </button>
-      </div>
+
+      <Link className="text-center" to="/services">
+        <button className="btn w-2/3  bg-emerald-500 text-black text-2xl  rounded hover:bg-teal-500">View all</button>
+      </Link>
     </div>
   );
 };

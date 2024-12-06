@@ -4,15 +4,17 @@ import { createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, onAuthStat
 import app from "../firebase/firebase.config";
 import { useState } from "react";
 import { useEffect } from "react";
+// import useAxiosPublic from "../hooks/useAxiosPublic";
 
 export const AuthContext = createContext();
 const auth = getAuth(app);
+
 const googleProvider = new GoogleAuthProvider();
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-
+  // const axiosPublic = useAxiosPublic();
   const createUser = (email, password) => {
     setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
@@ -37,6 +39,19 @@ const AuthProvider = ({ children }) => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       console.log(currentUser);
       setUser(currentUser);
+      // if(currentUser){
+      //   const userInfo = {email: currentUser.email}
+      //   console.log('auth pro email', userInfo)
+      //   console.log(currentUser.email)
+      //   axiosPublic.post('/jwt', userInfo)
+      //   .then(res =>{
+      //     if(res.data.token){
+      //       localStorage.setItem('book-worm', res.data.token);
+      //     }
+      //   })
+      // }else{
+      //   localStorage.removeItem('book-worm');
+      // }
       setLoading(false);
     });
 

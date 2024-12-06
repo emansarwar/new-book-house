@@ -51,8 +51,17 @@ const router = createBrowserRouter([
             <Checkout></Checkout>
           </PrivateRoute>
         ),
-        loader: ({ params }) => fetch(`https://book-house-server-blue.vercel.app/services/${params.id}`),
+        loader: ({ params }) => fetch(`https://book-house-server.vercel.app/services/${params.id}`),
       },
+      // {
+      //   path: "/checkout/:id",
+      //   element: (
+      //     <PrivateRoute>
+      //       <Checkout></Checkout>
+      //     </PrivateRoute>
+      //   ),
+      //   loader: ({ params }) => fetch(`https://book-house-server-blue.vercel.app/services/${params.id}`),
+      // },
       {
         path: "/orders",
         element: (

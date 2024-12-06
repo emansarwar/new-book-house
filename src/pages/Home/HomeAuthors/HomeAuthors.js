@@ -13,25 +13,24 @@ const HomeAuthors = () => {
   const homeAuthors = authors.slice(0, 6);
 
   useEffect(() => {
-    fetch("https://book-house-server-blue.vercel.app/authors")
+    fetch("https://book-house-server.vercel.app/authors")
       .then((res) => res.json())
       .then((data) => setAuthors(data));
   }, []);
-  console.log(authors);
+  // console.log(authors);
 
   return (
-    <div id="authors" className="my-2 authors-main">
-      <h1 className="text-5xl py-5 authors-header">Authors</h1>
+    <div id="authors" className="my-2 bg-teal-500 authors-main text-center">
+      <h1 className="text-5xl py-5 bg-teal-400 authors-header">Authors</h1>
       <div className="authors-container">
         {homeAuthors.map((author) => (
           <Author key={author._id} author={author} />
         ))}
       </div>
-      <div className="view-all text-4xl py-2 mx-1">
-        <button>
-          <Link to="/authors">View all</Link>
-        </button>
-      </div>
+
+      <Link className="text-center" to="/authors">
+        <button className="btn mb-2 w-2/3  bg-teal-400 text-black text-2xl  rounded hover:bg-teal-300">View all</button>
+      </Link>
     </div>
   );
 };

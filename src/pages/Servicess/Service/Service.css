@@ -1,7 +1,7 @@
 .card-container{
     /* align-items: flex-end; */
     width: 96%;
-    background-color: rgba(201, 232, 230, 0.753);
+    /* background-color: rgba(201, 232, 230, 0.753); */
     margin-left: 10px;
     border-radius: 15px;
     transition: .1s;
@@ -15,7 +15,7 @@
     padding: 10px;
     /* border: 2px solid white; */
     border-radius: 7px;
-    background-color: rgb(238, 165, 185);
+    /* background-color: rgb(238, 165, 185); */
 }
 
 .servicecard-information{

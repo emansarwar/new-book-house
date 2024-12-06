@@ -2,8 +2,8 @@ import React, { useContext } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import img from "../../assets/images/login/login.svg";
 import { AuthContext } from "../../contexts/AuthProvider";
-import SocialLogin from "../Shared/SocialLogin/SocialLogin";
-import './Login.css'
+// import SocialLogin from "../Shared/SocialLogin/SocialLogin";
+import "./Login.css";
 
 const Login = () => {
   const { login } = useContext(AuthContext);
@@ -29,7 +29,7 @@ const Login = () => {
         console.log(currentUser);
 
         // get jwt token
-        fetch("https://book-house-server-blue.vercel.app/jwt", {
+        fetch("https://book-house-server.vercel.app/jwt", {
           method: "POST",
           headers: {
             "content-type": "application/json",
@@ -41,6 +41,7 @@ const Login = () => {
             console.log(data);
             // local storage is the easiest but not the best place to store jwt token
             localStorage.setItem("book-worm", data.token);
+            console.log("tokent", data.token);
             navigate(from, { replace: true });
           });
       })
@@ -53,7 +54,7 @@ const Login = () => {
         <div className="text-center lg:text-left">
           <img className="w-3/4" src={img} alt="" />
         </div>
-        <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100 py-20">
+        <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl text-center bg-base-100 py-20">
           <h1 className="text-5xl text-center font-bold">Login</h1>
           <form onSubmit={handleLogin} className="card-body">
             <div className="form-control">
@@ -77,18 +78,26 @@ const Login = () => {
               <input className="btn btn-primary" type="submit" value="Login" />
             </div>
           </form>
-          <div className="align-items">
-            <p className="text-center">New to book-worm?
-              <Link className="text-orange-600 font-bold" to="/signup">
-                Sign Up
-              </Link>
-            </p>
-            <hr />
-            <p>
-            <SocialLogin />
-            </p>
-            
+          <div class="flex items-center">
+            <div class="flex-grow border-t border-gray-300"></div>
+            <span class="mx-4 text-gray-500">Or</span>
+            <div class="flex-grow border-t border-gray-300"></div>
           </div>
+          {/* <p>
+            <SocialLogin />
+          </p>
+          <div class="flex items-center">
+            <div class="flex-grow border-t border-gray-300"></div>
+            <span class="mx-4 text-gray-500">Or</span>
+            <div class="flex-grow border-t border-gray-300"></div>
+          </div> */}
+
+          <p className="text-center">
+            New to book-worm?
+            <Link className="text-orange-600 font-bold" to="/signup">
+              Sign Up
+            </Link>
+          </p>
         </div>
       </div>
     </div>
